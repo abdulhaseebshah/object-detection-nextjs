@@ -4,8 +4,7 @@ import Webcam from "react-webcam";
 import { load as cocoSSDLoad } from "@tensorflow-models/coco-ssd";
 import * as tf from "@tensorflow/tfjs";
 import { renderPredictions } from "../utils/render-predictions";
-
-
+import { PiWebcamSlashFill } from "react-icons/pi";
 const ObjectDetection = () => {
   let detectInterval;
   const [isLoading, setIsLoading] = useState(true);
@@ -36,7 +35,7 @@ const ObjectDetection = () => {
         undefined,
         0.6
       );
-      console.log(detectedObjects);
+
       const context = canvasRef.current.getContext("2d");
       renderPredictions(detectedObjects, context);
     }
@@ -59,23 +58,34 @@ const ObjectDetection = () => {
     showmyVideo();
   }, []);
   return (
-    <div className="mt-8">
+    <div className="w-full mt-4">
       {isLoading ? (
-        <h1 className="gradient-title">Loading AI Model</h1>
-      ) : (
-        <div className="relative flex justify-center items-center gradient p-1.5 rounded-md">
-          {/* WEBCAM */}
-          <Webcam
-            ref={webcamRef}
-            className="lg:h-[480px] rounded-md w-full"
-            muted
-          />
-          {/* CANVAS */}
-          <canvas
-            ref={canvasRef}
-            className="absolute top-0 left-0 z-9999 w-full lg:h-[480px]"
-          />
+        <div className="mt-4 flex justify-center items-center lg:h-[480px] p-8 border border-[#292524]">
+          <h1 className="text-green-500">Loading AI Model</h1>
         </div>
+      ) : (
+        <>
+          {webcamRef === null ? (
+            <div className="relative flex justify-center items-center p-1.5 border border-[#292524]">
+              <Webcam
+                ref={webcamRef}
+                className="lg:h-[480px] rounded-md w-full"
+                muted
+                videoConstraints={{ facingMode: "user" }}
+              />
+
+              <canvas
+                ref={canvasRef}
+                className="absolute top-0 left-0 z-9999 w-full lg:h-[480px]"
+              />
+            </div>
+          ) : (
+            <div className="mt-4 flex flex-col justify-center items-center lg:h-[480px] p-8 border border-[#292524]">
+              <PiWebcamSlashFill size={200} color="#3b3635" />
+              <h1 className="text-green-500">WebCam is not Connected!</h1>
+            </div>
+          )}
+        </>
       )}
     </div>
   );
