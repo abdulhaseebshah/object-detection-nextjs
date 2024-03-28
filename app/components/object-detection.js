@@ -65,13 +65,12 @@ const ObjectDetection = () => {
         </div>
       ) : (
         <>
-          {webcamRef === null ? (
+          {webcamRef !== null ? (
             <div className="relative flex justify-center items-center p-1.5 border border-[#292524]">
               <Webcam
                 ref={webcamRef}
                 className="lg:h-[480px] rounded-md w-full"
                 muted
-                videoConstraints={{ facingMode: "user" }}
               />
 
               <canvas
