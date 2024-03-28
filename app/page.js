@@ -3,13 +3,13 @@ import ObjectDetection from "./components/object-detection";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col items-center px-8 py-6">
+    <main className="min-h-screen flex flex-col items-center p-8 relative">
       <header className="flex justify-between items-center w-full">
         <div class="text-3xl pl-3 flex group cursor-pointer items-center">
           <span class=" -translate-x-3  group-hover:-translate-x-1 group-hover:text-green-500 transition-all font-light">
             {String.fromCharCode(123)}
           </span>
-          <span class="font-medium text-4xl tracking-tighter text-center text-white">
+          <span class="font-medium text-3xl md:4xl tracking-tighter text-center text-white">
             ObjectLens
           </span>
           <span class="translate-x-3 group-hover:translate-x-1 transition-all group-hover:text-green-500 font-light">
@@ -22,7 +22,7 @@ export default function Home() {
       </header>
       {/* <AboutUs /> */}
       <ObjectDetection />
-      <p className="text-[#444] mt-2">Developed By: Abdul Haseeb</p>
+      <p className="text-[#444] absolute bottom-4 md:bottom-2">Developed By: Abdul Haseeb</p>
     </main>
   );
 }
